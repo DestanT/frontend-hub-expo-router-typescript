@@ -1,6 +1,5 @@
 import { StyleSheet, View, Pressable, Text } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 type ButtonProps = {
