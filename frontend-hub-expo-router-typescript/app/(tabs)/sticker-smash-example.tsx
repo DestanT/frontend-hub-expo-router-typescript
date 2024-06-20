@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { useState, useRef } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import { StatusBar } from 'expo-status-bar';
 
@@ -19,6 +19,7 @@ export default function StickerSmashExampleView() {
   const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [pickedEmoji, setPickedEmoji] = useState<string | null>(null);
+  const imageRef = useRef<View | null>(null);
 
   const onReset = () => {
     setShowAppOptions(false);
@@ -70,8 +71,10 @@ export default function StickerSmashExampleView() {
   return (
     <ThemedView style={styles.container}>
       <ThemedView style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
-        {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />}
+        <ThemedView ref={imageRef} collapsable={false}>
+          <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
+          {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />}
+        </ThemedView>
       </ThemedView>
       {showAppOptions ? (
         <ThemedView style={styles.optionsContainer}>
