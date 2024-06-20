@@ -8,6 +8,7 @@ import ImageViewer from '@/components/sample-components/ImageViewer';
 import IconButton from '@/components/sample-components/IconButton';
 import CircleButton from '@/components/sample-components/CircleButton';
 import EmojiPicker from '@/components/sample-components/EmojiPicker';
+import EmojiList from '@/components/sample-components/EmojiList';
 import * as ImagePicker from 'expo-image-picker';
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
@@ -16,6 +17,7 @@ export default function StickerSmashExampleView() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [pickedEmoji, setPickedEmoji] = useState<string | null>(null);
 
   const onReset = () => {
     setShowAppOptions(false);
@@ -84,7 +86,7 @@ export default function StickerSmashExampleView() {
         </ThemedView>
       )}
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
-        {/* A list of emoji component will go here */}
+        <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
       </EmojiPicker>
       <StatusBar style='auto' />
     </ThemedView>
