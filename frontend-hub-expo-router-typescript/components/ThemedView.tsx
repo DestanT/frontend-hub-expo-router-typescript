@@ -10,10 +10,12 @@ export type ThemedViewProps = ViewProps & {
 
 const ThemedViewComponent = forwardRef<View, ThemedViewProps>(
   ({ style, lightColor, darkColor, ...otherProps }, ref) => {
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+    const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
-  return <View ref={ref} style={[{ backgroundColor }, style]} {...otherProps} />;
-}
+    return <View ref={ref} style={[{ backgroundColor }, style]} {...otherProps} />;
+  },
 );
+
+ThemedViewComponent.displayName = 'ThemedView';
 
 export const ThemedView = ThemedViewComponent;
