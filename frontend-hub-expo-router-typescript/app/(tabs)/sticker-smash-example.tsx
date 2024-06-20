@@ -7,6 +7,7 @@ import Button from '@/components/sample-components/Button';
 import ImageViewer from '@/components/sample-components/ImageViewer';
 import IconButton from '@/components/sample-components/IconButton';
 import CircleButton from '@/components/sample-components/CircleButton';
+import EmojiPicker from '@/components/sample-components/EmojiPicker';
 import * as ImagePicker from 'expo-image-picker';
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
@@ -14,13 +15,18 @@ const PlaceholderImage = require('@/assets/images/background-image.png');
 export default function StickerSmashExampleView() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const onReset = () => {
     setShowAppOptions(false);
   };
 
   const onAddSticker = () => {
-    alert('Add sticker');
+    setIsModalVisible(true);
+  };
+
+  const onModalClose = () => {
+    setIsModalVisible(false);
   };
 
   const onSaveImageAsync = async () => {
@@ -66,9 +72,9 @@ export default function StickerSmashExampleView() {
       {showAppOptions ? (
         <ThemedView style={styles.optionsContainer}>
           <ThemedView style={styles.optionsRow}>
-            <IconButton icon="refresh" label="Reset" onPress={onReset} />
+            <IconButton icon='refresh' label='Reset' onPress={onReset} />
             <CircleButton onPress={onAddSticker} />
-            <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync} />
+            <IconButton icon='save-alt' label='Save' onPress={onSaveImageAsync} />
           </ThemedView>
         </ThemedView>
       ) : (
@@ -77,6 +83,9 @@ export default function StickerSmashExampleView() {
           <Button label='Use this photo' onPress={() => setShowAppOptions(true)} />
         </ThemedView>
       )}
+      <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
+        {/* A list of emoji component will go here */}
+      </EmojiPicker>
       <StatusBar style='auto' />
     </ThemedView>
   );
