@@ -11,6 +11,8 @@ import EmojiPicker from '@/components/sample-components/EmojiPicker';
 import EmojiList from '@/components/sample-components/EmojiList';
 import EmojiSticker from '@/components/sample-components/EmojiSticker';
 import * as ImagePicker from 'expo-image-picker';
+import * as MediaLibrary from 'expo-media-library';
+import { captureRef } from 'react-native-view-shot';
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
 
@@ -34,7 +36,19 @@ export default function StickerSmashExampleView() {
   };
 
   const onSaveImageAsync = async () => {
-    alert('Save image');
+    try {
+      const localUri = await captureRef(imageRef, {
+        height: 440,
+        quality: 1,
+      });
+
+      await MediaLibrary.saveToLibraryAsync(localUri);
+      if (localUri) {
+        alert('Saved!');
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const pickImageAsync = async () => {
