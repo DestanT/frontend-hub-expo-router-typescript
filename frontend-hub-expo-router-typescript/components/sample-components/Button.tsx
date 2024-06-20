@@ -7,21 +7,21 @@ type ButtonProps = {
   theme?: 'primary';
 };
 
-export default function Button({ label, theme } : ButtonProps) {
-    if (theme === 'primary') {
+export default function Button({ label, theme }: ButtonProps) {
+  if (theme === 'primary') {
     return (
       // Inline styles override the styles defined in StyleSheet.create
-      <View style={[styles.buttonContainer, { borderWidth: 4, borderColor: '#ffd33d', borderRadius: 18 }]}>
+      <View
+        style={[
+          styles.buttonContainer,
+          { borderWidth: 4, borderColor: '#ffd33d', borderRadius: 18 },
+        ]}
+      >
         <Pressable
           style={[styles.button, { backgroundColor: '#fff' }]}
           onPress={() => alert('You pressed a button.')}
         >
-          <FontAwesome
-            name='picture-o'
-            size={18}
-            color='#25292e'
-            style={styles.buttonIcon}
-          />
+          <FontAwesome name='picture-o' size={18} color='#25292e' style={styles.buttonIcon} />
           <Text style={[styles.buttonLabel, { color: '#25292e' }]}>{label}</Text>
         </Pressable>
       </View>

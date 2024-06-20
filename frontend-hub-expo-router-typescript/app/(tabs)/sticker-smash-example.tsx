@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import Button from '@/components/sample-components/Button';
 import ImageViewer from '@/components/sample-components/ImageViewer';
 
-const PlaceholderImage = require('@/assets/images/background-image.png')
+const PlaceholderImage = require('@/assets/images/background-image.png');
 
 export default function StickerSmashExampleView() {
   return (
