@@ -11,6 +11,7 @@ const PlaceholderImage = require('@/assets/images/background-image.png');
 
 export default function StickerSmashExampleView() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
 
   const pickImageAsync = async () => {
     // Example result object:
@@ -37,6 +38,7 @@ export default function StickerSmashExampleView() {
 
     if (!result.canceled) {
       setSelectedImage(result.assets[0].uri);
+      setShowAppOptions(true);
     } else {
       alert('You did not select an image.');
     }
@@ -47,10 +49,14 @@ export default function StickerSmashExampleView() {
       <ThemedView style={styles.imageContainer}>
         <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
       </ThemedView>
-      <ThemedView style={styles.footerContainer}>
-        <Button theme='primary' label='Choose a photo' onPress={pickImageAsync} />
-        <Button label='Use this photo' />
-      </ThemedView>
+      {showAppOptions ? (
+        <ThemedView />
+      ) : (
+        <ThemedView style={styles.footerContainer}>
+          <Button theme='primary' label='Choose a photo' onPress={pickImageAsync} />
+          <Button label='Use this photo' onPress={() => setShowAppOptions(true)} />
+        </ThemedView>
+      )}
       <StatusBar style='auto' />
     </ThemedView>
   );
