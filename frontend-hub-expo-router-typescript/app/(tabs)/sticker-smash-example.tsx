@@ -9,6 +9,7 @@ import IconButton from '@/components/sample-components/IconButton';
 import CircleButton from '@/components/sample-components/CircleButton';
 import EmojiPicker from '@/components/sample-components/EmojiPicker';
 import EmojiList from '@/components/sample-components/EmojiList';
+import EmojiSticker from '@/components/sample-components/EmojiSticker';
 import * as ImagePicker from 'expo-image-picker';
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
@@ -70,6 +71,7 @@ export default function StickerSmashExampleView() {
     <ThemedView style={styles.container}>
       <ThemedView style={styles.imageContainer}>
         <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
+        {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />}
       </ThemedView>
       {showAppOptions ? (
         <ThemedView style={styles.optionsContainer}>
