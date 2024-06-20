@@ -5,6 +5,8 @@ import { StatusBar } from 'expo-status-bar';
 
 import Button from '@/components/sample-components/Button';
 import ImageViewer from '@/components/sample-components/ImageViewer';
+import IconButton from '@/components/sample-components/IconButton';
+import CircleButton from '@/components/sample-components/CircleButton';
 import * as ImagePicker from 'expo-image-picker';
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
@@ -12,6 +14,18 @@ const PlaceholderImage = require('@/assets/images/background-image.png');
 export default function StickerSmashExampleView() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
+
+  const onReset = () => {
+    setShowAppOptions(false);
+  };
+
+  const onAddSticker = () => {
+    alert('Add sticker');
+  };
+
+  const onSaveImageAsync = async () => {
+    alert('Save image');
+  };
 
   const pickImageAsync = async () => {
     // Example result object:
@@ -50,7 +64,13 @@ export default function StickerSmashExampleView() {
         <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
       </ThemedView>
       {showAppOptions ? (
-        <ThemedView />
+        <ThemedView style={styles.optionsContainer}>
+          <ThemedView style={styles.optionsRow}>
+            <IconButton icon="refresh" label="Reset" onPress={onReset} />
+            <CircleButton onPress={onAddSticker} />
+            <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync} />
+          </ThemedView>
+        </ThemedView>
       ) : (
         <ThemedView style={styles.footerContainer}>
           <Button theme='primary' label='Choose a photo' onPress={pickImageAsync} />
@@ -74,5 +94,13 @@ const styles = StyleSheet.create({
   footerContainer: {
     flex: 1 / 3,
     alignItems: 'center',
+  },
+  optionsContainer: {
+    position: 'absolute',
+    bottom: 80,
+  },
+  optionsRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 });
