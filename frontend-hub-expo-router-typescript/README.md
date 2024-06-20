@@ -48,3 +48,35 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Steps to take to build on top of this project
+
+1. Install Expo Router
+
+   - https://docs.expo.dev/router/installation/
+   - npx create-expo-app@latest // at the time of writing this was v51.0.14
+
+2. Set up development environment
+
+   - https://docs.expo.dev/get-started/set-up-your-environment/?platform=android&device=simulated
+
+3. Run the app
+
+   - npx expo start
+   - view examples of core components
+
+4. When ready; reset the project and move the starter code to the app-example directory
+
+   - npm run reset-project
+   - This will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+   - app-example is a good place to look for examples of how to use Expo Router and the hub's core components
+   - can, and should be deleted at a later stage
+
+## Google Auth
+
+NOT IMPLEMENTED YET
+Google login will not work for mobile platforms unless these steps are taken:
+
+Check out: https://docs.expo.dev/guides/google-authentication/
+Then: https://docs.expo.dev/workflow/customizing/
+and: https://react-native-google-signin.github.io/docs/setting-up/expo
