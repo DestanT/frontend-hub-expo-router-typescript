@@ -15,7 +15,11 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [status, requestPermission] = MediaLibrary.usePermissions();
   const colorScheme = useColorScheme();
-  
+
+  if (status === null) {
+    requestPermission();
+  }
+
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -23,9 +27,6 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
-    }
-    if (status === null) {
-      requestPermission();
     }
   }, [loaded]);
 
