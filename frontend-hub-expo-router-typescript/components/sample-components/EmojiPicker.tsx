@@ -3,6 +3,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 type EmojiPickerProps = {
   isVisible: boolean;
+  children: React.ReactNode;
   onClose: () => void;
 };
 
