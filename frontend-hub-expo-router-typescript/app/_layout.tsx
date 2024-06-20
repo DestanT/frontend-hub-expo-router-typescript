@@ -3,6 +3,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import * as MediaLibrary from 'expo-media-library';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
@@ -12,7 +13,9 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [status, requestPermission] = MediaLibrary.usePermissions();
   const colorScheme = useColorScheme();
+  
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -20,6 +23,9 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
+    }
+    if (status === null) {
+      requestPermission();
     }
   }, [loaded]);
 
